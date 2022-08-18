@@ -1,0 +1,166 @@
+<div>
+  <div>
+    <h1>
+      List of all recipes
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new recipe
+    </h2>
+
+    <form action="/insert_recipe" method="post">
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id">
+      </div>
+
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="time" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="length_to_make_box">
+          Length to make
+        </label>
+
+        <input type="time" id="length_to_make_box" name="query_length_to_make">
+      </div>
+
+      <div>
+        <label for="picture_box">
+          Picture
+        </label>
+
+        <textarea id="picture_box" name="query_picture" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="food_name_box">
+          Food name
+        </label>
+
+        <input type="text" id="food_name_box" name="query_food_name">
+      </div>
+
+      <button>
+        Create recipe
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Category
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Length to make
+        </th>
+
+        <th>
+          Picture
+        </th>
+
+        <th>
+          Food name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_recipes.each do |a_recipe| %>
+      <tr>
+        <td>
+          <%= a_recipe.id %>
+        </td>
+
+        <td>
+          <%= a_recipe.owner_id %>
+        </td>
+
+        <td>
+          <%= a_recipe.category %>
+        </td>
+
+        <td>
+          <%= a_recipe.description %>
+        </td>
+
+        <td>
+          <%= a_recipe.length_to_make %>
+        </td>
+
+        <td>
+          <%= a_recipe.picture %>
+        </td>
+
+        <td>
+          <%= a_recipe.food_name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_recipe.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_recipe.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/recipes/<%= a_recipe.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

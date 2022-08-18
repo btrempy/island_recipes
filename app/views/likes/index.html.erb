@@ -8,59 +8,18 @@
 
 <hr>
 
-<div>
-  <div>
-    <h2>
-      Add a new like
-    </h2>
-
-    <form action="/insert_like" method="post">
-      <div>
-        <label for="recipe_id_box">
-          Recipe
-        </label>
-
-        <input type="text" id="recipe_id_box" name="query_recipe_id">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <button>
-        Create like
-      </button>
-    </form>
-  </div>
-</div>
-
 <hr>
 <div>
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Recipe
         </th>
 
         <th>
-          User
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
+          Creater of Recipe
         </th>
 
         <th>
@@ -69,27 +28,18 @@
 
       <% @list_of_likes.each do |a_like| %>
       <tr>
+
+
         <td>
-          <%= a_like.id %>
+          <%= a_like.recipe.food_name %>
         </td>
 
         <td>
-          <%= a_like.recipe_id %>
+          <%= a_like.user.full_name %>
         </td>
 
         <td>
-          <%= a_like.user_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_like.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_like.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/likes/<%= a_like.id %>">
+          <a href="/recipes/<%= a_like.recipe.id %>">
             Show details
           </a>
         </td>

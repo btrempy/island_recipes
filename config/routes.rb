@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get("/user_home", { :controller => "user", :action => "user_home" })
 
+  # get("/recipes/:recipe_id", { :controller => "user", :action => "show_recipe" })
 
   # Routes for the Like resource:
 
@@ -48,7 +49,8 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_recipe", { :controller => "recipes", :action => "create" })
-          
+  get("/insert_recipe_form", { :controller => "recipes", :action => "create_form" })
+
   # READ
   get("/recipes", { :controller => "recipes", :action => "index" })
   

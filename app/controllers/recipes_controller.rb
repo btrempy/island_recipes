@@ -34,6 +34,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def create_form
+    render({ :template => "recipes/create_form.html.erb" })
+  end
+
   def update
     the_id = params.fetch("path_id")
     the_recipe = Recipe.where({ :id => the_id }).at(0)
@@ -47,7 +51,7 @@ class RecipesController < ApplicationController
 
     if the_recipe.valid?
       the_recipe.save
-      redirect_to("/recipes/#{the_recipe.id}", { :notice => "Recipe updated successfully."} )
+      redirect_to("/recipes/#{the_recipe.id}", { :notice => "Recipe updated successfully." })
     else
       redirect_to("/recipes/#{the_recipe.id}", { :alert => the_recipe.errors.full_messages.to_sentence })
     end
@@ -55,10 +59,17 @@ class RecipesController < ApplicationController
 
   def destroy
     the_id = params.fetch("path_id")
+
+    the_user = @current_user.id
+
     the_recipe = Recipe.where({ :id => the_id }).at(0)
 
-    the_recipe.destroy
+    if the_recipe.owner_id == the_user
+      the_recipe.destroy
 
-    redirect_to("/recipes", { :notice => "Recipe deleted successfully."} )
+      redirect_to("/user_home", { :notice => "Recipe deleted successfully." })
+    else
+      redirect_to("/user_home", { :alert => "Recipe does not belong to you and cannot be deleted. Please only delete your own recipes" })
+    end
   end
 end

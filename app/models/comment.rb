@@ -10,4 +10,6 @@
 #  recipe_id    :integer
 #
 class Comment < ApplicationRecord
+  belongs_to(:commentor, { :required => true, :class_name => "User", :foreign_key => "commentor_id" })
+  belongs_to(:recipe, { :required => true, :class_name => "Recipe", :foreign_key => "recipe_id" })
 end

@@ -20,7 +20,7 @@
       <ul class="list-group">
         <% @user_likes.each do |a_like| %>
           <li class="list-group-item">
-            <%= a_like.recipe_id %>
+            <a href="/:recipe"><%= a_like.recipe.food_name %></a>
           </li>
         <% end %>
       </ul>

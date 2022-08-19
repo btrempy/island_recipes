@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :user_is_logged_in
+
 
   def index
     the_user = @current_user.id

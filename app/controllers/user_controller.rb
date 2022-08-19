@@ -1,22 +1,18 @@
 class UserController < ApplicationController
-  before_action :user_is_logged_in
   def index
     render({ :template => "user/index.html.erb" })
   end
 
   def user_home
+    the_user = @current_user.id
 
-    
-      the_user = @current_user.id
+    @all_recipes = Recipe.all
+    @user_recipes = @all_recipes.where({ :owner_id => the_user })
 
-      all_recipes = Recipe.all
-      @user_recipes = all_recipes.where({ :owner_id => the_user })
+    all_likes = Like.all
+    @user_likes = all_likes.where({ :user_id => the_user })
 
-      all_likes = Like.all
-      @user_likes = all_likes.where({ :user_id => the_user })
-
-      render({ :template => "user/user_home.html.erb" })
-
+    render({ :template => "user/user_home.html.erb" })
   end
 
   def user_recipes
@@ -58,14 +54,13 @@ class UserController < ApplicationController
     the_user = @current_user.id
 
     the_id = params.fetch("recipe_id")
+    all_likes = Like.all
 
-    the_like = Like.where({ :id => the_id })
+    the_like_for_recipe = all_likes.where({ :recipe_id => the_id })
+    the_like = the_like_for_recipe.where({ :user_id => the_user })
 
-    if the_like.present?
-      the_like.destroy
-      redirect_to("/user_likes", { :notice => "Successfully unlike recipe." })
-    else
-      redirect_to("/user_likes", { :alert => the_recipe.errors.full_messages.to_sentence })
-    end
+    the_like.destroy_all
+
+    redirect_to("/user_likes", { :notice => "Successfully unlike recipe." })
   end
 end

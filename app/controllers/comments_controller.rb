@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  before_action :user_is_logged_in
 
   def index
     matching_comments = Comment.all

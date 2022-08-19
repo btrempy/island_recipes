@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :user_is_logged_in
+
 
   def index
     matching_recipes = Recipe.all
@@ -27,12 +27,13 @@ class RecipesController < ApplicationController
     the_recipe.length_to_make = params.fetch("query_length_to_make")
     the_recipe.picture = params.fetch("query_picture")
     the_recipe.food_name = params.fetch("query_food_name")
+    the_recipe.recipe_url= params.fetch("query_recipe_url")
 
     if the_recipe.valid?
       the_recipe.save
-      redirect_to("/recipes", { :notice => "Recipe created successfully." })
+      redirect_to("/user_home", { :notice => "Recipe created successfully." })
     else
-      redirect_to("/recipes", { :alert => the_recipe.errors.full_messages.to_sentence })
+      redirect_to("/user_home", { :alert => the_recipe.errors.full_messages.to_sentence })
     end
   end
 

@@ -15,5 +15,11 @@ class ApplicationController < ActionController::Base
       redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
     end
   end
+  def user_is_logged_in
+    if !session[:current_user]
+      redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
+    end
+end
+
 
 end

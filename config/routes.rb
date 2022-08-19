@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get("/", { :controller => "user", :action => "index" })
 
   get("/user_home", { :controller => "user", :action => "user_home" })
+  get("/user_recipes", { :controller => "user", :action => "user_recipes" })
+  get("/user_likes", { :controller => "user", :action => "user_likes" })
+  get("/like_recipe/:recipe_id", { :controller => "user", :action => "user_liked_recipe" })
+  get("/unlike_recipe/:recipe_id", { :controller => "user", :action => "user_unliked_recipe" })
 
   # get("/recipes/:recipe_id", { :controller => "user", :action => "show_recipe" })
 

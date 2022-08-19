@@ -16,6 +16,16 @@
           Delete recipe
         </a>
       </div>
+      <div>
+        <a href="/like_recipe/<%= @the_recipe.id %>">
+          Like this Recipe
+        </a>
+      </div>
+      <div>
+        <a href="/unlike_recipe/<%= @the_recipe.id %>">
+          Unike this Recipe
+        </a>
+      </div>
     </div>
 
     <dl>
@@ -23,7 +33,7 @@
         Owner
       </dt>
       <dd>
-        <%= @the_recipe.owner_id %>
+        <%= @the_recipe.owner.full_name %>
       </dd>
 
       <dt>
@@ -48,10 +58,10 @@
       </dd>
 
       <dt>
-        Picture
+        Picture 
       </dt>
       <dd>
-        <%= @the_recipe.picture %>
+        <img src="<%= @the_recipe.picture %>" alt="<%= @the_recipe.food_name %>" />
       </dd>
 
       <dt>
@@ -62,24 +72,20 @@
       </dd>
 
       <dt>
-        Created at
+        Recipe URL
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_recipe.created_at) %> ago
+        <a href="<%= @the_recipe.recipe_url %>" target="_blank">
+          Go to recipe URL
+        </a>
+
       </dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_recipe.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
 
 <hr>
-
 
 <div>
   <div>
@@ -89,11 +95,8 @@
 
     <form action="/modify_recipe/<%= @the_recipe.id %>"  method="post" >
       <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
 
-        <input type="text" id="owner_id_box" name="query_owner_id" value="<%= @the_recipe.owner_id %>">
+        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @the_recipe.owner_id %>" >
       </div>
 
       <div>
@@ -109,7 +112,7 @@
           Description
         </label>
 
-        <input type="time" id="description_box" name="query_description" value="<%= @the_recipe.description %>">
+        <input type="text" id="description_box" name="query_description" value="<%= @the_recipe.description %>">
       </div>
 
       <div>
@@ -117,12 +120,12 @@
           Length to make
         </label>
 
-        <input type="time" id="length_to_make_box" name="query_length_to_make" value="<%= @the_recipe.length_to_make %>">
+        <input type="integer" id="length_to_make_box" name="query_length_to_make" value="<%= @the_recipe.length_to_make %>">
       </div>
 
       <div>
         <label for="picture_box">
-          Picture
+          Picture URL
         </label>
 
         <textarea id="picture_box" name="query_picture"><%= @the_recipe.picture %></textarea>
@@ -135,7 +138,13 @@
 
         <input type="text" id="food_name_box" name="query_food_name" value="<%= @the_recipe.food_name %>">
       </div>
+      <div>
+        <label for="recipe_url_box">
+          Recipe URL
+        </label>
 
+        <input type="text" id="recipe_url_box" name="query_recipe_url" value="<%= @the_recipe.recipe_url %>">
+      </div>
       <button>
         Update recipe
       </button>

@@ -48,6 +48,7 @@ class RecipesController < ApplicationController
     the_recipe.length_to_make = params.fetch("query_length_to_make")
     the_recipe.picture = params.fetch("query_picture")
     the_recipe.food_name = params.fetch("query_food_name")
+    the_recipe.recipe_url= params.fetch("query_recipe_url")
 
     if the_recipe.valid?
       the_recipe.save

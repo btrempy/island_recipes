@@ -8,6 +8,7 @@
 #  food_name      :string
 #  length_to_make :integer
 #  picture        :text
+#  recipe_url     :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  owner_id       :integer

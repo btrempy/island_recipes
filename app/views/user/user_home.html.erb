@@ -26,5 +26,14 @@
       </ul>
     </div>
   </div>
-
+<div class="col-md-6">
+      <h4>Here are all of your liked recipes</h4>
+      <ul class="list-group">
+        <% @all_recipes.each do |a_recipe| %>
+          <li class="list-group-item">
+            <a href="/recipes/<%= a_recipe.id %>"><%= a_recipe.food_name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 </div>

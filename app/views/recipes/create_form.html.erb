@@ -6,11 +6,9 @@
 
     <form action="/insert_recipe" method="post">
       <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
 
-        <input type="text" id="owner_id_box" name="query_owner_id">
+
+        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id %>">
       </div>
 
       <div>
@@ -26,7 +24,7 @@
           Description
         </label>
 
-        <input type="time" id="description_box" name="query_description">
+        <input type="text" id="description_box" name="query_description">
       </div>
 
       <div>
@@ -34,7 +32,7 @@
           Length to make
         </label>
 
-        <input type="time" id="length_to_make_box" name="query_length_to_make">
+        <input type="integer" id="length_to_make_box" name="query_length_to_make">
       </div>
 
       <div>
@@ -52,7 +50,13 @@
 
         <input type="text" id="food_name_box" name="query_food_name">
       </div>
+      <div>
+        <label for="recipe_url_box">
+          Recipe URL
+        </label>
 
+        <input type="text" id="recipe_url_box" name="query_recipe_url">
+      </div>
       <button>
         Create recipe
       </button>
